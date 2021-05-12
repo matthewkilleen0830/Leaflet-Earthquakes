@@ -6,6 +6,7 @@ d3.json(queryURL).then(function(data) {
 
     // Call createFeatures function
     createFeatures(data.features);
+    
 });
 
 // Create a function to create a layer of earthquake data
@@ -16,8 +17,39 @@ function createFeatures(earthquakeData) {
     function MyonEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.place +
         "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+
+        // // Circle markers code goes here?
+        // var markers = L.circleMarker(layer, {
+        //     radius: markerSize(feature.properties.mag),
+        //     fillColor: magColor(feature.properties.mag),
+        //     color: "#000",
+        //     weight: 0.3,
+        //     opacity: 0.5,
+        //     fillOpacity: 1 
+        // })
+
+        // // Loop through data
+        // for (var i = 0; i < data.length; i++) {
+
+        //     // Set the data location property to a variable
+        //     var epicenter = data[i].geometry;
+
+        //     // Check for epicenter property
+        //     if (epicenter) {
+
+        //         // Add a new marker
+        //         markers.addLayer(L.marker([geometry.coordinates[1], geometry.coordinates[0]])
+        //         );
+
+        //     }
+
+        // }
+
+        // // Add our marker layer to the map
+        // myMap.addLayer(markers);
+
 }
-  
+
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
@@ -84,5 +116,8 @@ function createMap(earthquakes) {
     L.control.layers(baseMaps, overlayMaps, {
         collapsed: false
     }).addTo(myMap);
+
+    
+
 
 }
