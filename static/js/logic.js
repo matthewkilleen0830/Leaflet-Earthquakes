@@ -59,6 +59,10 @@ var baseMaps = {
     "Dark": darkmap
 };
 
+var earthquakes = new L.LayerGroup();
+
+var overlays = {Earthquakes: earthquakes};
+
 // Create our map, giving it the streetmap layer to display on load
 var myMap = L.map("map", {
     center: [
@@ -93,8 +97,8 @@ d3.json(queryURL).then(function(data) {
     // Give each feature a popup describing the place and time of the earthquake
     onEachFeature: function (feature, layer) {
         layer.bindPopup("<h3> Location: &nbsp;" + feature.properties.place +
-        "</h3><hr><p> Date & Time:  " + new Date(feature.properties.time) + "</p>" + "<h3> Magnitude: &nbsp;" + feature.properties.mag
-        + "<h3> Depth (in km): &nbsp;" + feature.geometry.coordinates[2]);
+        "</h3><hr><p> Date & Time:  " + new Date(feature.properties.time) + "</p>" + "<h3> Magnitude: &nbsp;" 
+        + feature.properties.mag + "<h3> Depth (in km): &nbsp;" + feature.geometry.coordinates[2]);
     }
 
     // Add to map
@@ -103,7 +107,7 @@ d3.json(queryURL).then(function(data) {
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
     // Add the layer control to the map
-    L.control.layers(baseMaps, {
+    L.control.layers(baseMaps, overlays, {
         collapsed: false
     }).addTo(myMap);
 
@@ -117,12 +121,12 @@ d3.json(queryURL).then(function(data) {
         var div = L.DomUtil.create("div", "info legend");
         var grades = [-10, 10, 30, 50, 70, 90];
         var colors = [
-            "#98ee00",
-            "#d4ee00",
-            "#eecc00",
-            "#ee9c00",
-            "#ea822c",
-            "#ea2c2c"
+            "#99ff33",
+            "#ccff33",
+            "#ffd633",
+            "#ffad33",
+            "#ff5c33",
+            "#ff3333"
         ];
 
         // Loop through earthquake magnitudes to set colors
