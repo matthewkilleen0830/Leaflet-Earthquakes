@@ -111,6 +111,30 @@ d3.json(queryURL).then(function(data) {
         position: "bottomright",
     });
 
+    // Add details to legend
+    legend.onAdd = function() {
+        var div = L.DomUtil.create("div", "info legend");
+        var grades = [-10, 10, 30, 50, 70, 90];
+        var colors = [
+            "#98ee00",
+            "#d4ee00",
+            "#eecc00",
+            "#ee9c00",
+            "#ea822c",
+            "#ea2c2c"
+        ];
+
+        // Loop through earthquake magnitudes to set colors
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML += "<i style = 'background: " + colors[i] + "'></i>"
+            + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
+        }
+        return div;
+    };
+
+    // Add legend to map
+    legend.addTo(myMap);
+
 });
 
 
