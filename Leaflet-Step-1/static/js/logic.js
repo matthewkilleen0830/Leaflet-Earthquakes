@@ -71,17 +71,13 @@ var baseMaps = {
     "Satellite": satellitemap
 };
 
-var earthquakes = new L.LayerGroup();
-
-var overlays = {Earthquakes: earthquakes};
-
 // Create our map, giving it the lightmap layer to display on load
 var myMap = L.map("map", {
     center: [
     39.8282, -98.5696
     ],
     zoom: 4,
-    layers: [baseMaps.Light]
+    layers: [lightmap]
 });
 
 // Perform a GET request to the query URL
@@ -119,8 +115,8 @@ d3.json(queryURL).then(function(data) {
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
     // Add the layer control to the map
-    L.control.layers(baseMaps, overlays, {
-        collapsed: false
+    L.control.layers(baseMaps, legend, {
+        collapsed: true
     }).addTo(myMap);
 
     // Create legend
