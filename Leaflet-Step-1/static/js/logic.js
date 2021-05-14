@@ -52,24 +52,36 @@ var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z
     accessToken: API_KEY
 });
 
+// Define lightmap layer
+var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+    tileSize: 512,
+    maxZoom: 18,
+    zoomOffset: -1,
+    id: "mapbox/light-v10",
+    accessToken: API_KEY
+});
+
+
 // Define a baseMaps object to hold our base layers
 var baseMaps = {
+    "Light": lightmap,
+    "Dark": darkmap,
     "Street": streetmap,
-    "Satellite": satellitemap,
-    "Dark": darkmap
+    "Satellite": satellitemap
 };
 
 var earthquakes = new L.LayerGroup();
 
 var overlays = {Earthquakes: earthquakes};
 
-// Create our map, giving it the streetmap layer to display on load
+// Create our map, giving it the lightmap layer to display on load
 var myMap = L.map("map", {
     center: [
     39.8282, -98.5696
     ],
     zoom: 4,
-    layers: [baseMaps.Street]
+    layers: [baseMaps.Light]
 });
 
 // Perform a GET request to the query URL
