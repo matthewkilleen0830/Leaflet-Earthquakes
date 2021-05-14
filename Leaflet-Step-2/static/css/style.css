@@ -1,0 +1,54 @@
+/* USGS Green = #007150
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* #map,
+body,
+html {
+  height: 100%;
+} */
+
+#map {
+  position:  relative;
+  height:  98vh;
+  width: 100%;
+  /* min-height:  100%; */
+  /* min-width:  100%; */
+  padding:  0;
+  margin:  0;
+}
+
+/* h3 {
+
+}
+
+p {
+
+} */
+
+.legend {
+  padding: 10px;
+  line-height: 18px;
+  color: #555;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.legend i {
+  float: left;
+  width: 54.5px;
+  height: 18px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+.leaflet-bottom.leaflet-left {
+  width: 90%;
+}
+.leaflet-control-container .leaflet-timeline-controls {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  margin-bottom: 15px;
+}
