@@ -74,9 +74,9 @@ var overlays = {
 // Create our map, giving it the satellite layer to display on load
 var myMap = L.map("map", {
     center: [
-    39.8282, -98.5696
+    45, -45
     ],
-    zoom: 4,
+    zoom: 2.5,
     layers: [satellitemap, earthquakes, tecplates]
 });
 
@@ -156,7 +156,7 @@ d3.json(platesURL).then(function (plates) {
 
     // Load GeoJSON data and create lines based on fault line polygon coordinates
     L.geoJSON(plates, {
-        color: "blue"
+        color: "orange"
 
     // Add layer to map
     }).addTo(tecplates)
