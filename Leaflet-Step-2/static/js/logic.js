@@ -154,7 +154,7 @@ d3.json(quakeURL).then(function(data) {
 d3.json(platesURL).then(function (plates) {
     console.log(plates)
 
-    // Load GeoJSON data and create lines based on fault line polygon coordinates
+    // Load GeoJSON data and create fault lines based on JSON polygon coordinates
     L.geoJSON(plates, {
         color: "orange"
 
