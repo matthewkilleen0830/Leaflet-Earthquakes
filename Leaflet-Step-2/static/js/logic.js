@@ -62,11 +62,12 @@ var baseMaps = {
     "Outdoors": outdoors
 };
 
-var earthquakes = new L.LayerGroup();
-var plates = new L.LayerGroup();
+// Define two map layers to toggle between
+var earthquakes = new L.LayerGroup(earthquakes);
+var tecplates = new L.LayerGroup();
 
 var overlays = {
-    "Tectonic Plates": plates,
+    "Tectonic Plates": tecplates,
     "Earthquakes": earthquakes
     };
 
@@ -76,7 +77,7 @@ var myMap = L.map("map", {
     39.8282, -98.5696
     ],
     zoom: 4,
-    layers: [satellitemap, plates, earthquakes]
+    layers: [satellitemap, earthquakes, tecplates]
 });
 
 // Perform a GET request to the query URL
@@ -147,4 +148,17 @@ d3.json(quakeURL).then(function(data) {
     // Add legend to map
     legend.addTo(myMap);
 
+});
+
+//Perform a GET request to the tectonic plates URL
+d3.json(platesURL).then(function (plates) {
+    console.log(plates)
+
+    // Load GeoJSON data and create lines based on fault line polygon coordinates
+    L.geoJSON(plates, {
+        color: "blue"
+
+    // Add layer to map
+    }).addTo(tecplates)
+    tecplates.addTo(map);
 });
